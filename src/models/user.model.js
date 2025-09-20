@@ -61,10 +61,12 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+//it checks if the password is correct or not while login
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// it creates jwt token for authentication and authorization
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
@@ -77,6 +79,7 @@ userSchema.methods.generateAccessToken = function () {
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
   );
 };
+// it creates refresh token for authentication and authorization
 userSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     {
