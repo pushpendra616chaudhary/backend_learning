@@ -1,7 +1,7 @@
 //promise type
-
+// you dont have to write try catch block in every controller that is the main purpose of this function
 const asyncHandler = (requestHandler) => {
-  (req, res, next) => {
+  return (req, res, next) => {
     Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
   };
 };

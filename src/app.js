@@ -17,4 +17,10 @@ app.use(express.urlencoded({ extended: true })); //it means to parse url encoded
 app.use(express.static("public")); //to serve static files like images ,css files ,js files
 app.use(cookieParser()); //to parse cookies
 
+// routes import
+
+import userRouter from "./routes/user.routes.js";
+
+// router declaration
+app.use("/api/v1/users", userRouter);
 export { app };
